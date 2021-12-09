@@ -3,8 +3,9 @@ const mysql = require('mysql2');
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '85pA[izp]366',
-    database: 'library'
+    password: '',
+    database: 'library',
+    dateStrings: true
 });
 
 db.connect((err) =>{
@@ -12,6 +13,4 @@ db.connect((err) =>{
     console.log("Connected to MySql Server");
 });
 
-exports.query = function(sql, callback) {
-    db.query(sql, callback);
-}
+module.exports = db;

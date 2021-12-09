@@ -2,10 +2,11 @@
 * {
   box-sizing: border-box;
   font-family: Tahoma;
+  color: #333;
 }
 
 body {
-  background-color: #eee;
+  background-color: #ddd;
 }
 
 #container {
@@ -40,7 +41,8 @@ nav {
   height: 100%;
   float: right;
   padding: 0px 50px;
-  transition: background-color 0.2s, border-bottom 0.1s, text-shadow 0.2s;
+  border-bottom: 0px solid #f50;
+  transition: background-color 0.1s, border-bottom 0.1s, text-shadow 0.1s;
 
   color: white;
   line-height: 80px;
@@ -74,12 +76,10 @@ nav {
   border-bottom: 4px solid #f50;
 }
 
-/*Main Content*/
+/*Main Content Container*/
 main {
   width: 100%;
-  height: 1000px;
-  background-color: white;
-  margin-top: 130px;
+  margin-top: 160px;
 }
 
 section {
@@ -88,4 +88,9 @@ section {
 
 .sectionActive {
   display: block;
+}
+
+label {
+  font-size: 12pt;
+  margin: 6px;
 }

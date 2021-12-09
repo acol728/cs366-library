@@ -3,31 +3,168 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" href="styles/style.css" type="text/css">
+	<link rel="stylesheet" href="styles/discover.css" type="text/css">
+	<link rel="stylesheet" href="styles/account.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Library</title>
 </head>
 <body>
     <div id="container">
         <nav>
-            <div class="navElement unselectable" data-page="cart">Cart</div>
+            <div class="navElement unselectable" data-page="cart">Cart/Returns</div>
             <div class="navElement unselectable" data-page="account">Sign In/Sign Up</div>
             <div class="navElement unselectable navActive" data-page="discover">Discover Books</div>
             <div class="navTitle unselectable">CS366 Library</div>
         </nav>
         <main>
             <section class="sectionActive" id="discover">
-                <h1>Discover</h1>
+                <div id="searchArea">
+                    <input class="unselectable" type="text" id="searchInput" name="search" placeholder="Search...">
+                    <button id="searchButton"><i class="fa fa-search"></i></button>
+                    <label for="sortInput">Sort by</label>
+                    <select class="searchDropdown" id="sortInput" name="sortInput">
+                        <option value="popular">Popular</option>
+                        <option value="best">Best rated</option>
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="shortest">Shortest</option>
+                        <option value="longest">Longest</option>
+                    </select>
+                    <label for="subjectInput">Subject</label>
+                    <select class="searchDropdown" id="subjectInput" name="subjectInput">
+                        <option value="all">All</option>
+                        <option value="art">Art</option>
+                        <option value="biography">Biography</option>
+                        <option value="childrens">Children's</option>
+                        <option value="christian">Christian</option>
+                        <option value="classics">Classics</option>
+                        <option value="comics">Comics</option>
+                        <option value="cookbooks">Cookbooks</option>
+                        <option value="ebooks">Ebooks</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="graphicNovels">Graphic Novels</option>
+                        <option value="historicalFiction">Historical Fiction</option>
+                        <option value="history">History</option>
+                        <option value="horror">Horror</option>
+                        <option value="memoir">Memoir</option>
+                        <option value="music">Music</option>
+                        <option value="mystery">Mystery</option>
+                        <option value="nonfiction">Nonfiction</option>
+                        <option value="poetry">Poetry</option>
+                        <option value="psychology">Psychology</option>
+                        <option value="romance">Romance</option>
+                        <option value="science">Science</option>
+                        <option value="scienceFiction">Science Fiction</option>
+                        <option value="selfHelp">Self Help</option>
+                        <option value="sports">Sports</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="travel">Travel</option>
+                        <option value="youngAdult">Young Adult</option>
+                    </select>
+                </div>
+                <div id="contentWrapper">
+                    <div id="filterArea">
+                        <label for="dateStart">Books from</label>
+                        <input class="dateInput" type="date" id="dateStart" name="dateStart"
+                            value="1900-01-01"
+                            min="1900-01-01" max="2021-12-31">
+
+                        <label for="dateEnd">to</label>
+                        <input class="dateInput" type="date" id="dateEnd" name="dateEnd"
+                                value="2021-12-31"
+                                min="1900-01-01" max="2021-12-31">
+                        <hr>
+                        <label for="ratingInput">Minimum rating</label>
+                        <input type="range" step="0.1" min="0" max="5" value="0" name="ratingInput" id="ratingInput">
+                        <label id="ratingInputResult" style="text-align: center; color: #333;">0 <span style="font-size: 14pt;">&star;&star;&star;&star;&star;</span></label>
+                        <hr>
+                        <div>
+                            <input type="checkbox" id="availableInput" name="availableInput" value="available">
+                            <label class="unselectable" for="availableInput" style="cursor: pointer">Available</label>
+                        </div>
+                        <hr>
+                        <label for="pageStart">Page length from</label>
+                        <input class="pageInput" type="number" min="1" max="10000" step="1" id="pageStart" name="pageStart" value="1">
+
+                        <label for="pageEnd">to</label>
+                        <input class="pageInput" type="number" min="1" max="10000" step="1" id="pageEnd" name="pageEnd" value="10000">
+
+                        <button name="filterButton" id="filterButton">Apply</button>
+                    </div>
+                    <div id="noResult">No results to show</div>
+                    <div id="resultArea"></div>
+                </div>
             </section>
             <section id="account">
-                <h1>Account</h1>
+                <div id="accountWrapper">
+                    <div id="accountForm">
+                        <text class="formTitle"><span class="accountTabLink underline" id="signInButton">Sign in</span> / <span class="accountTabLink" id="registerButton">Register</span></text>
+                        <div class="accountForm" id="signInForm">
+                            <label for="signInUsername">Username</label>
+                            <input class="accountTextInput" type="text" id="signInUsername" name="signInUsername" required>
+                            <label for="signInPassword">Password</label>
+                            <input class="accountTextInput" type="password" id="signInPassword" name="signInPassword" required>
+                            <button class="accountSubmitButton">Sign In</button>
+                        </div>
+                        <div class="accountForm accountFormInactive" id="registerForm">
+                            <label for="username">Username</label>
+                            <input class="accountTextInput" type="text" id="username" name="username" required>
+                            <label for="password">Password</label>
+                            <input class="accountTextInput" type="password" id="password" name="password" required>
+                            <label for="firstName">First Name</label>
+                            <input class="accountTextInput" type="text" id="firstName" name="firstName" required>
+                            <label for="lastName">Last Name</label>
+                            <input class="accountTextInput" type="text" id="lastName" name="lastName" required>
+                            <label for="email">Email</label>
+                            <input class="accountTextInput" type="email" id="email" name="email" placeholder="johndoe@email.com" required>
+                            <text class="formTitle" style="margin-top: 20px;">Address</text>
+                            <label for="lineOne">Line one</label>
+                            <input class="accountTextInput" type="text" id="lineOne" name="lineOne" required>
+                            <label for="lineTwo">Line two</label>
+                            <input class="accountTextInput" type="text" id="lineTwo" name="lineTwo" placeholder="Company, apartment, building, etc.">
+                            <label for="zipCode">Zip</label>
+                            <input class="accountTextInput" type="number" id="zipCode" name="zipCode" min="0" max="99999">
+                            <label for="city">City</label>
+                            <input class="accountTextInput" type="text" id="city" name="city">
+                            <label for="state">State</label>
+                            <input class="accountTextInput" type="text" id="state" name="state">
+                            <text class="formTitle" style="margin-top: 20px;">Phone (optional)</text>
+                            <label for="prefix">Prefix</label>
+                            <input class="accountTextInput" type="number" id="prefix" name="prefix" placeholder="1">
+                            <label for="phoneNumber">Phone number</label>
+                            <input class="accountTextInput" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="555-555-5555">
+                            <button class="accountSubmitButton">Register</button>
+                        </div>
+                    </div>
+                </div>
             </section>
             <section id="cart">
                 <h1>Cart</h1>
             </section>
+            <div class="modal" id="bookModal">
+                <div id="bookModalContent">
+                    <div class="unselectable" id="bookCloseButton">X</div>
+                    <div id="bookModalTitle">Lord of the Rings&nbsp;<span id="bookModalLanguageCode">eng</span></div>
+                    <div id="bookModalISBN13">9780618517657</div>
+                    <div class="bookModalText" id="bookModalPublisherInformation">Houghton Mifflin Harcourt, 10/21/2004</div>
+                    <div class="bookModalText" id="bookModalAuthors">J.R.R. Tolkien</div>
+                    <div class="bookModalText" id="bookModalSubject">Fantasy</div>
+                    <div id="bookModalSplit">
+                        <div class="bookModalText" id="bookModalPages">1184 pages</div>
+                        <div style="text-align: right;">
+                            <div class="bookModalText" id="bookModalRating">&starf;&starf;&starf;&starf;&star;</div>
+                            <div id="bookModalRatingCount">4.5 from 1710 reviews</div>
+                        </div>
+                    </div>
+                    <div id="bookModalEnd">
+                        <div id="bookModalStock">6 in stock</div>
+                        <button class="unselectable" id="bookModalCartButton">Add to cart</button>
+                    </div>
+                </div>
+            </div>
         </main>
-        <footer>
-            
-        </footer>
     </div>
 </body>
 <script type="module" src="index.js"></script>
