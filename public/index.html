@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="styles/style.css" type="text/css">
 	<link rel="stylesheet" href="styles/discover.css" type="text/css">
 	<link rel="stylesheet" href="styles/account.css" type="text/css">
+	<link rel="stylesheet" href="styles/cart.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Library</title>
 </head>
@@ -13,14 +14,14 @@
     <div id="container">
         <nav>
             <div class="navElement unselectable" data-page="cart">Cart/Returns</div>
-            <div class="navElement unselectable" data-page="account">Sign In/Sign Up</div>
+            <div class="navElement unselectable" data-page="account" id="accountNavButton">Sign In/Sign Up</div>
             <div class="navElement unselectable navActive" data-page="discover">Discover Books</div>
             <div class="navTitle unselectable">CS366 Library</div>
         </nav>
         <main>
             <section class="sectionActive" id="discover">
                 <div id="searchArea">
-                    <input class="unselectable" type="text" id="searchInput" name="search" placeholder="Search...">
+                    <input class="unselectable" type="text" id="searchInput" name="search" placeholder="Search title, author, or ISBN13...">
                     <button id="searchButton"><i class="fa fa-search"></i></button>
                     <label for="sortInput">Sort by</label>
                     <select class="searchDropdown" id="sortInput" name="sortInput">
@@ -36,7 +37,7 @@
                         <option value="all">All</option>
                         <option value="art">Art</option>
                         <option value="biography">Biography</option>
-                        <option value="childrens">Children's</option>
+                        <option value="children's">Children's</option>
                         <option value="christian">Christian</option>
                         <option value="classics">Classics</option>
                         <option value="comics">Comics</option>
@@ -98,15 +99,16 @@
                 </div>
             </section>
             <section id="account">
-                <div id="accountWrapper">
+                <div class="accountWrapper" id="accountPageSignedOut">
                     <div id="accountForm">
                         <text class="formTitle"><span class="accountTabLink underline" id="signInButton">Sign in</span> / <span class="accountTabLink" id="registerButton">Register</span></text>
                         <div class="accountForm" id="signInForm">
                             <label for="signInUsername">Username</label>
-                            <input class="accountTextInput" type="text" id="signInUsername" name="signInUsername" required>
+                            <input class="accountTextInput" type="text" id="signInUsername" name="signInUsername">
                             <label for="signInPassword">Password</label>
-                            <input class="accountTextInput" type="password" id="signInPassword" name="signInPassword" required>
-                            <button class="accountSubmitButton">Sign In</button>
+                            <input class="accountTextInput" type="password" id="signInPassword" name="signInPassword">
+                            <div id="signInWarning">Username or password is incorrect</div>
+                            <button class="accountSubmitButton" id="signInButtonSubmit">Sign In</button>
                         </div>
                         <div class="accountForm accountFormInactive" id="registerForm">
                             <label for="username">Username</label>
@@ -132,16 +134,63 @@
                             <input class="accountTextInput" type="text" id="state" name="state">
                             <text class="formTitle" style="margin-top: 20px;">Phone (optional)</text>
                             <label for="prefix">Prefix</label>
-                            <input class="accountTextInput" type="number" id="prefix" name="prefix" placeholder="1">
+                            <input class="accountTextInput" type="number" id="prefix" name="prefix" placeholder="111">
                             <label for="phoneNumber">Phone number</label>
-                            <input class="accountTextInput" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="555-555-5555">
-                            <button class="accountSubmitButton">Register</button>
+                            <input class="accountTextInput" type="number" id="phoneNumber" name="phoneNumber" placeholder="5556666">
+                            <button class="accountSubmitButton" id="createAccountButton">Register</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="accountWrapper" id="accountPageSignedIn">
+                    <div class="accountTitle">Welcome back</div>
+                    <div class="accountInfoWrapper">
+                        <div class="accountBox">
+                            <div class="accountBoxTitle">Update account info</div>
+                            <label for="usernameUpdate">Username</label>
+                            <input class="accountTextInput" type="text" id="usernameUpdate" name="usernameUpdate" required>
+                            <label for="passwordUpdate">Password</label>
+                            <input class="accountTextInput" type="password" id="passwordUpdate" name="passwordUpdate" required>
+                            <label for="firstNameUpdate">First Name</label>
+                            <input class="accountTextInput" type="text" id="firstNameUpdate" name="firstNameUpdate" required>
+                            <label for="lastNameUpdate">Last Name</label>
+                            <input class="accountTextInput" type="text" id="lastNameUpdate" name="lastNameUpdate" required>
+                            <label for="emailUpdate">Email</label>
+                            <input class="accountTextInput" type="email" id="emailUpdate" name="emailUpdate" placeholder="johndoe@email.com" required>
+                            <div class="accountBoxButton" id="updateAccountButton">Update</div>
+                        </div>
+                        <div class="accountBox">
+                            <div class="accountBoxTitle">Set favorites</div>
+                            <label for="fAuthorUpdate">Favorite author</label>
+                            <input class="accountTextInput" type="text" id="fAuthorUpdate" name="fAuthorUpdate" required>
+                            <label for="fSubjectUpdate">Favorite subject</label>
+                            <input class="accountTextInput" type="text" id="fSubjectUpdate" name="fSubjectUpdate" required>
+                            <div class="accountBoxButton" id="updateFavoritesButton">Update</div>
+                        </div>
+                        <div class="accountBox">
+                            <div class="accountBoxTitle">Manage account <i class="fa fa-cog" aria-hidden="true" style="color: #333;"></i></div>
+                            <div class="accountBoxButton" id="logoutButton">Logout</div>
+                            <div class="accountBoxButton" id="deleteAccountButton">Delete account</div>
                         </div>
                     </div>
                 </div>
             </section>
             <section id="cart">
-                <h1>Cart</h1>
+                <div id="cartContainer">
+                    <div id="cartTitle">Cart</div>
+                    <div id="cartInputs">
+                        <div id="cartRemoveButton">Remove selected items from cart <i class="fa fa-trash-o" style="color:#b20000"></i> </div>
+                        <button class="cartPageButton unselectable" id="cartCheckoutButton">Checkout</button>
+                    </div>
+                    <div id="cartNoResult">No items to show</div>
+                    <div class="cartPageResults" id="cartResults"></div>
+
+                    <div id="cartTitle" style="margin-top: 40px;">Checked out</div>
+                    <div id="cartInputs" style="justify-content: flex-end;">
+                        <button class="cartPageButton unselectable" id="cartReturnButton">Return</button>
+                    </div>
+                    <div id="checkedOutNoResult">No items to show</div>
+                    <div class="cartPageResults" id="checkedOutResults"></div>
+                </div>
             </section>
             <div class="modal" id="bookModal">
                 <div id="bookModalContent">
@@ -160,7 +209,7 @@
                     </div>
                     <div id="bookModalEnd">
                         <div id="bookModalStock">6 in stock</div>
-                        <button class="unselectable" id="bookModalCartButton">Add to cart</button>
+                        <button class="unselectable" id="bookModalCartButton" data-can-click="false">Add to cart</button>
                     </div>
                 </div>
             </div>

@@ -56,7 +56,7 @@ function deleteData(url) {
     if (url) {
         const task = new Promise((resolve, reject) => {
             const http = new XMLHttpRequest();
-            http.open('PUT', url);
+            http.open('DELETE', url);
             http.send();
             http.onload = function() {
                 http.status === 200 ? resolve(http.response) : reject(Error(http.statusText));

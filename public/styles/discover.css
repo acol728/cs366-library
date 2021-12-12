@@ -367,7 +367,7 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
   color: #777;
 }
 
-#bookModalCartButton {
+.bookModalCartButton {
   border: none;
   background-color: #f50;
   font-size: 16pt;
@@ -378,19 +378,19 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
   margin-top: 10px;
 }
 
-#bookModalCartButton:hover {
+.bookModalCartButton:hover {
   background-color: #e64d00;
 }
 
-#bookModalCartButton:focus {
+.bookModalCartButton:focus {
   outline: none;
 }
 
-#bookModalCartButton:active {
+.bookModalCartButton:active {
   background-color: #cc4400;
 }
 
-#bookModalCartButtonInactive {
+.bookModalCartButtonInactive {
   border: none;
   background-color: #eee;
   font-size: 16pt;
@@ -400,6 +400,6 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
   margin-top: 10px;
 }
 
-#bookModalCartButtonInactive:focus {
+.bookModalCartButtonInactive:focus {
   outline: none;
 }

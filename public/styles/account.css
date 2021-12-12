@@ -1,10 +1,15 @@
 /*Account page*/
 
-#accountWrapper {
+.accountWrapper {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 80px;
+}
+
+#accountPageSignedIn {
+  display: none;
 }
 
 .accountTabLink {
@@ -63,6 +68,14 @@
   border-left: 10px solid #f50;
 }
 
+#signInWarning {
+  color: #b20000;
+  font-style: italic;
+  font-family: Georgia;
+  font-size: 12pt;
+  display: none;
+}
+
 .accountSubmitButton {
   border: none;
   background-color: #f50;
@@ -85,5 +98,69 @@
 }
 
 .accountSubmitButton:active {
+  background-color: #cc4400;
+}
+
+.accountTitle {
+  font-size: 24pt;
+  width: 100%;
+  text-align: center;
+}
+
+#historyNoResult {
+  color: #333;
+  font-size: 16pt;
+  font-family: Georgia;
+  display: none;
+}
+
+.accountInfoWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-between;
+  margin-top: 80px;
+}
+
+.accountBox {
+  width: 28%;
+  background-color: white;
+  border-top: 40px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px;
+  box-shadow: 3px 3px 10px #ccc;
+}
+
+.accountBoxTitle {
+  font-size: 16pt;
+  margin-bottom: 20px;
+}
+
+.accountBox input {
+  width: 100%;
+}
+
+.accountBoxButton {
+  border: none;
+  background-color: #f50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 12pt;
+  margin: 20px auto;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.accountBoxButton:hover {
+  background-color: #e64d00;
+}
+
+.accountBoxButton:focus {
+  outline: none;
+}
+
+.accountBoxButton:active {
   background-color: #cc4400;
 }

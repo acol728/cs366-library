@@ -6,9 +6,11 @@ const port = process.env.PORT || 8080;
 
 const discoverRouter = require(path.resolve(__dirname, 'routes/discover'));
 const accountRouter = require(path.resolve(__dirname, 'routes/account'));
+const cartRouter = require(path.resolve(__dirname, 'routes/cart'));
 
 app.use('/discover', discoverRouter);
 app.use('/account', accountRouter);
+app.use('/cart', cartRouter);
 
 app.use(express.static('public'))
 

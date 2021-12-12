@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get('/search', discoverController.search)
 router.get('/book/:bookid', discoverController.getBook);
-
+router.post('/addtocart', discoverController.addToCart);
 
 module.exports = router;
